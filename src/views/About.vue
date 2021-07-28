@@ -17,9 +17,29 @@
     <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
   </el-row>
+  <el-button @click="httpTest" size="small" typr="primary">发起请求</el-button>
 </template>
 
-<script></script>
+<script>
+import http from "@/net/http";
+export default {
+  name: "about",
+  setup() {
+    const httpTest = async () => {
+      try {
+        const res = await http.get("index");
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    return {
+      httpTest
+    }
+  },
+};
+</script>
 
 <style>
 .el-row {
