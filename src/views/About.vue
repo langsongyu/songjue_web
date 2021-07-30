@@ -17,26 +17,29 @@
     <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
   </el-row>
-  <el-button @click="httpTest" size="small" typr="primary">发起请求</el-button>
+  <el-button @click="getTest" size="small" type="primary">GET请求</el-button>
+  <el-button @click="postTest" size="small" type="primary">POST请求</el-button>
 </template>
 
 <script>
-import http from "@/net/http";
+import api from "../net/api";
 export default {
   name: "about",
   setup() {
-    const httpTest = async () => {
-      try {
-        const res = await http.get("index");
-        console.log(res);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+    async function getTest() {
+      const params = {};
+      api.getTest(params);
+    }
+
+    async function postTest() {
+      const params = {};
+      api.postTest(params);
+    }
 
     return {
-      httpTest
-    }
+      getTest,
+      postTest,
+    };
   },
 };
 </script>
